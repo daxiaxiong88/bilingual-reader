@@ -33,6 +33,7 @@ const OPENAI_MODEL_PREF = `${BASE}.openai.model`;
 const OPENAI_API_KEY_PREF = `${BASE}.openai.apiKey`;
 const OPENAI_PROMPT_PREF = `${BASE}.openai.prompt`;
 const OPENAI_TEMPERATURE_PREF = `${BASE}.openai.temperature`;
+const FIGURE_BACKFILL_PREF = `${BASE}.figureBackfill`;
 const REQUEST_GAP_PREF = `${BASE}.requestGapMs`;
 const MAX_CONCURRENT_PREF = `${BASE}.maxConcurrent`;
 const MAX_CHARS_PREF = `${BASE}.maxCharsPerRequest`;
@@ -198,6 +199,15 @@ export function getSkipLastPages(): number {
 
 export function setSkipLastPages(value: number): void {
   setNumberPref(SKIP_LAST_PAGES_PREF, value, 0, 50);
+}
+
+export function getFigureBackfillEnabled(): boolean {
+  const value = (Zotero.Prefs as any).get(FIGURE_BACKFILL_PREF, true);
+  return value !== false;
+}
+
+export function setFigureBackfillEnabled(enabled: boolean): void {
+  (Zotero.Prefs as any).set(FIGURE_BACKFILL_PREF, !!enabled, true);
 }
 
 export function getResolvedPDFTranslateService(): string {

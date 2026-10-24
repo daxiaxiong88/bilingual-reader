@@ -3,6 +3,7 @@ import {
   DEFAULT_OLLAMA_URL,
   getCacheEngineTag,
   getEngine,
+  getFigureBackfillEnabled,
   getMaxBatchParagraphs,
   getMaxCharsPerRequest,
   getMaxConcurrent,
@@ -35,6 +36,7 @@ import {
   type BatchInput,
 } from "./translationPipeline";
 import { CancellationToken } from "./cancellationToken";
+import { clearFigureBackfill, installFigureBackfill } from "./figureBackfill";
 import { requestOpenAITranslation } from "./openaiClient";
 import { cleanupReadingLayout, observeReadingLayout } from "./readingLayout";
 
@@ -427,6 +429,22 @@ function installStyles(doc: Document): void {
     .${TRANSLATION_CLASS}[data-state="paused"] {
       opacity: 0.78;
     }
+    figure.bilingual-reader-backfill {
+      margin: 1em auto 0.5em;
+      text-align: center;
+      max-width: 100%;
+    }
+    figure.bilingual-reader-backfill img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+    figure.bilingual-reader-backfill[data-state="loading"] {
+      min-height: 5em;
+      border-radius: 4px;
+      background: rgba(128, 128, 128, 0.07);
+    }
   `;
 
   const target = doc.head || doc.documentElement;
@@ -587,6 +605,8 @@ function clearTranslations(doc: Document): void {
       // Reader may have replaced the SDT iframe while cleaning up.
     }
   }
+  clearFigureBackfill(doc);
+
   const root = getDocumentRoot(doc);
   if (root) delete root.dataset.bilingualReaderRunning;
   cleanupReadingLayout(doc);
@@ -824,6 +844,7 @@ async function prepareAndRun(reader: any, refresh: boolean): Promise<void> {
     throw new Error("当前阅读模式中没有检测到可翻译的正文段落，或已被末尾页数设置全部排除。");
   }
 
+  installFigureBackfill(reader, doc, structure, getFigureBackfillEnabled());
   observeReadingLayout(getActiveSDTView(reader), doc);
   for (const paragraph of paragraphs) {
     ensureTranslationBlock(doc, paragraph);

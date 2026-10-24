@@ -21,6 +21,7 @@ declare namespace _ZoteroTypes {
       "maxConsecutiveErrors": number;
       "requestTimeoutMs": number;
       "skipLastPages": number;
+      "figureBackfill": boolean;
     };
   }
 }

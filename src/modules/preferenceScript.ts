@@ -13,6 +13,7 @@ import {
   DEFAULT_REQUEST_TIMEOUT_MS,
   DEFAULT_SKIP_LAST_PAGES,
   getEngine,
+  getFigureBackfillEnabled,
   getMaxCharsPerRequest,
   getMaxBatchParagraphs,
   getMaxConcurrent,
@@ -28,6 +29,7 @@ import {
   getRequestTimeoutMs,
   getSkipLastPages,
   setEngine,
+  setFigureBackfillEnabled,
   setMaxCharsPerRequest,
   setMaxBatchParagraphs,
   setMaxConcurrent,
@@ -109,6 +111,9 @@ function saveSettings(doc: Document): void {
   );
   setSkipLastPages(
     readNumberInput(doc, "bilingualreader-skip-last-pages", DEFAULT_SKIP_LAST_PAGES),
+  );
+  setFigureBackfillEnabled(
+    !!getElement<HTMLInputElement>(doc, "bilingualreader-figure-backfill")?.checked,
   );
   setMaxConcurrent(readNumberInput(doc, "bilingualreader-max-concurrent", DEFAULT_MAX_CONCURRENT));
   setRequestGapMs(readNumberInput(doc, "bilingualreader-request-gap", DEFAULT_REQUEST_GAP_MS));
@@ -343,6 +348,8 @@ export async function registerPrefsScripts(window: Window): Promise<void> {
   if (openaiPrompt) openaiPrompt.value = getOpenAIPrompt();
   if (openaiTemperature) openaiTemperature.value = String(getOpenAITemperature());
   if (skipLastPages) skipLastPages.value = String(getSkipLastPages());
+  const figureBackfill = getElement<HTMLInputElement>(doc, "bilingualreader-figure-backfill");
+  if (figureBackfill) figureBackfill.checked = getFigureBackfillEnabled();
   if (maxConcurrent) maxConcurrent.value = String(getMaxConcurrent());
   if (gap) gap.value = String(getRequestGapMs());
   if (maxChars) maxChars.value = String(getMaxCharsPerRequest());

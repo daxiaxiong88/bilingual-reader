@@ -12,3 +12,4 @@ pref("maxBatchParagraphs", 6);
 pref("maxConsecutiveErrors", 3);
 pref("requestTimeoutMs", 60000);
 pref("skipLastPages", 1);
+pref("figureBackfill", true);
