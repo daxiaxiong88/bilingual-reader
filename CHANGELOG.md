@@ -1,8 +1,10 @@
 # 更新日志
 
-## Unreleased
+## v0.8.0
 
-- 新增 OpenAI 兼容翻译后端，可直连 ModelScope、Gemini、OpenRouter、SiliconFlow 等 `/chat/completions` 服务。
+首个维护分支发布（基于上游 v0.5.1）。
+
+- 新增 OpenAI 兼容翻译后端，可直连 ModelScope、智谱、Gemini、OpenRouter、SiliconFlow 等 `/chat/completions` 服务。
 - 设置页提供 ModelScope、智谱 GLM-4.7-Flash、SiliconFlow 与 Gemini 预设，支持自定义接口、模型、API Key、提示词和温度。
 - 新增“测试连接与翻译”按钮，保存前即可验证接口。
 - 缓存键包含接口、模型、提示词哈希和温度，调整配置后不会误用旧译文。

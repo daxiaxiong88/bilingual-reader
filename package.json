@@ -1,7 +1,7 @@
 {
   "name": "zotero-bilingual-reader",
   "type": "module",
-  "version": "0.5.1",
+  "version": "0.8.0",
   "description": "Zotero 10 阅读模式 PDF 段落中英对照翻译",
   "keywords": [
     "translation",
@@ -17,9 +17,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/quillamio/bilingual-reader.git"
+    "url": "https://github.com/daxiaxiong88/bilingual-reader.git"
   },
-  "homepage": "https://github.com/quillamio/bilingual-reader",
+  "homepage": "https://github.com/daxiaxiong88/bilingual-reader",
   "author": "quillamio",
   "license": "AGPL-3.0-or-later",
   "scripts": {

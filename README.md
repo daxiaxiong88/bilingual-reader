@@ -9,6 +9,10 @@
 在 Zotero 10 的 PDF 阅读模式中读取结构化段落，将英文原文与中文译文按段落连续显示，适合论文精读。
 
 > 本插件由 GPT 编写。
+>
+> 本仓库是 [quillamio/bilingual-reader](https://github.com/quillamio/bilingual-reader) 的维护分支（fork）。
+> 上游最新发布为 v0.5.1；本分支额外包含 OpenAI 兼容后端、ModelScope / 智谱预设、阅读模式缺图回填等改动。
+> 原插件作者与版权归 quillamio；许可证为 AGPL-3.0-or-later。
 
 ## 主要功能
 
